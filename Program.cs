@@ -89,6 +89,31 @@ namespace ConsoleApplication9
             for (int i = 1; i <= 9 && !correct; i++)
                 correct = solve(0, 0, sudoku, i);
         }
+        static void run() {
+            string inp;
+            while(true){
+                Console.WriteLine("fill the sudoku or ilegal char to exit");
+                for (int i = 0; i < 9; i++) {
+                    inp = Console.ReadLine();
+                    if (!isCorrectInput(inp))
+                        break;
+                    for (int r = 0; r < inp.Length; r++)
+                        mat[i, r] = int.Parse(inp[r]+"");
+                }
+                print(mat);
+                solve(mat);
+                print(mat);
+            }
+            Console.WriteLine("Good bye");
+        }
+        static bool isCorrectInput(string str) {
+            foreach (char i in str)
+                if (!(i >= '0' && i <= '9'))
+                    return false;
+            if (str.Length != 9)
+                return false;
+            return true;
+        }
         static void Main(string[] args)
         {
             print(mat2);
@@ -97,6 +122,7 @@ namespace ConsoleApplication9
             print(mat);
             solve(mat);
             print(mat);
+            run();
             Console.ReadLine();
         }
     }
