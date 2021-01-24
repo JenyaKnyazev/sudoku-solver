@@ -31,10 +31,15 @@ namespace ConsoleApplication9
             for (int i = 0; i < sudoku.GetLength(1); i++)
                 if (i != col && sudoku[row, i] == val)
                     return false; 
-            for(int i=row-row%3;i<=row+((row%3==0)?2:row%3%2);i++)
+            /*for(int i=row-row%3;i<=row+((row%3==0)?2:row%3%2);i++)
                 for (int r = col - col % 3; r <= col + ((col % 3 == 0) ? 2 : col%3 % 2); r++)
                     if(i!=row||r!=col)
                         if(sudoku[i,r]==val)
+                            return false;*/
+            for (int i = row - row % 3; i <= row +((row+1)%3+(row+1)%3)%3; i++)
+                for (int r = col - col % 3; r <= col + ((col+ 1) % 3 + (col + 1) % 3) % 3; r++)
+                    if (i != row || r != col)
+                        if (sudoku[i, r] == val)
                             return false;
             return true; 
         }
@@ -103,6 +108,7 @@ namespace ConsoleApplication9
                 print(mat);
                 solve(mat);
                 print(mat);
+
             }
             Console.WriteLine("Good bye");
         }
